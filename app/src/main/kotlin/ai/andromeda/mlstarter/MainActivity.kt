@@ -1,38 +1,16 @@
 package ai.andromeda.mlstarter
 
+import ai.andromeda.mlstarter.databinding.ActivityMainBinding
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import ai.andromeda.mlstarter.ui.theme.MLStarterTheme
+import androidx.appcompat.app.AppCompatActivity
+import com.orhanobut.logger.Logger
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MLStarterTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
-            }
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding.apply {
+            setContentView(root)
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MLStarterTheme {
-        Greeting("Android")
     }
 }
