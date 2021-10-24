@@ -1,6 +1,9 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -36,6 +39,8 @@ android {
     }
     buildFeatures {
         compose = true
+        mlModelBinding = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.COMPOSE
@@ -51,13 +56,49 @@ dependencies {
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.lifecycleKtx)
-    implementation(Dependencies.activityCompose)
+    implementation(Dependencies.activityKtx)
+
+    // ... Navigation
+    implementation(Dependencies.navFragmentKtx)
+    implementation(Dependencies.navUiKtx)
 
     // ... Jetpack Compose
     implementation(Dependencies.composeUi)
+    implementation(Dependencies.composeFoundation)
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeUiPreview)
+    implementation(Dependencies.composeActivity)
+    implementation(Dependencies.composeLiveData)
+    implementation(Dependencies.composeViewModel)
+    implementation(Dependencies.composeIconsCore)
+    implementation(Dependencies.composeIconsExtended)
 
     // ... Material Design
     implementation(Dependencies.material)
+
+    // ... Hilt
+    implementation(Dependencies.hilt)
+    kapt(Dependencies.hiltCompiler)
+
+    // ... CameraX
+    implementation(Dependencies.camerax)
+    implementation(Dependencies.cameraxLifecycle)
+    implementation(Dependencies.cameraxView)
+
+    // ... Tensorflow Lite
+    implementation(Dependencies.tensorflowSupport)
+    implementation(Dependencies.tensorflowMetadata)
+    implementation(Dependencies.tensorflowGpu)
+
+    // ... Glide Compose
+    implementation(Dependencies.glideCompose)
+
+    // ... Logger
+    implementation(Dependencies.logger)
+}
+
+// Required for Hilt
+// Ref: https://developer.android.com/training/dependency-injection/hilt-android#kts)
+kapt {
+    correctErrorTypes = true
 }
