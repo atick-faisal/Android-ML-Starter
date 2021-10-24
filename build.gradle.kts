@@ -6,6 +6,10 @@ buildscript {
     dependencies {
         classpath(BuildPlugins.android)
         classpath(BuildPlugins.kotlin)
+        // ... Hilt
+        classpath(BuildPlugins.hilt)
+        // ... Navigation Safe Args
+        classpath(BuildPlugins.navigation)
     }
 }
 
