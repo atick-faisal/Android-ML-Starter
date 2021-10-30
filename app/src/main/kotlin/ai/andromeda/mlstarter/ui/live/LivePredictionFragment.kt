@@ -16,8 +16,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 
 @androidx.camera.core.ExperimentalGetImage
+@AndroidEntryPoint
 class LivePredictionFragment : Fragment() {
 
     private val viewModel: LivePredictionViewModel by viewModels()

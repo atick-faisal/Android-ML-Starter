@@ -17,8 +17,10 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.graphics.decodeBitmap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalAnimationApi
+@AndroidEntryPoint
 class ImageClassificationFragment : Fragment() {
 
     private val viewModel: ImageClassificationViewModel by viewModels()

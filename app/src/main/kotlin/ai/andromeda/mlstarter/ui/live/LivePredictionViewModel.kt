@@ -4,8 +4,11 @@ import ai.andromeda.mlstarter.ml.data.Prediction
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LivePredictionViewModel : ViewModel() {
+@HiltViewModel
+class LivePredictionViewModel @Inject constructor() : ViewModel() {
 
     private val _permissionGranted = MutableLiveData<Boolean>()
     val permissionGranted: LiveData<Boolean>

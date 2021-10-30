@@ -10,8 +10,10 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalMaterialApi
+@AndroidEntryPoint
 class SelectorFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
