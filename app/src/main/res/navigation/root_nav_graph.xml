@@ -21,6 +21,6 @@
         android:label="LivePredictionFragment" />
     <fragment
         android:id="@+id/imageClassifiactionFragment"
-        android:name="ai.andromeda.mlstarter.ui.static.ImageClassificationFragment"
+        android:name="ai.andromeda.mlstarter.ui.classification.ImageClassificationFragment"
         android:label="ImageClassifiactionFragment" />
 </navigation>
