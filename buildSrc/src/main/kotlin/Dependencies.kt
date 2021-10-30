@@ -40,6 +40,13 @@ object Dependencies {
     val tensorflowMetadata by lazy { "org.tensorflow:tensorflow-lite-metadata:${Versions.TENSORFLOW}" }
     val tensorflowGpu by lazy { "org.tensorflow:tensorflow-lite-gpu:${Versions.TENSORFLOW_GPU}" }
 
+    // ... Retrofit (https://github.com/square/retrofit)
+    // ... OkHttp (https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor)
+    val retrofit by lazy { "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}" }
+    val gsonConverter by lazy { "com.squareup.retrofit2:converter-gson:${Versions.RETROFIT}" }
+    val okHttp by lazy { "com.squareup.okhttp3:okhttp:${Versions.RETROFIT}" }
+    val loggingInterceptor by lazy { "com.squareup.okhttp3:logging-interceptor:${ Versions.OKHTTP }" }
+
     // ... Glide (https://github.com/skydoves/Landscapist)
     val glideCompose by lazy { "com.github.skydoves:landscapist-glide:${Versions.GLIDE}" }
 

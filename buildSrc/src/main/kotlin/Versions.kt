@@ -24,6 +24,9 @@ object Versions {
     const val TENSORFLOW = "0.1.0"
     const val TENSORFLOW_GPU = "2.3.0"
 
+    const val RETROFIT = "2.9.0"
+    const val OKHTTP = "4.9.0"
+
     const val GLIDE = "1.3.9"
     const val LOGGER = "2.2.0"
 
