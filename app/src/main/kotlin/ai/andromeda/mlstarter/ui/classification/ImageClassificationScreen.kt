@@ -1,4 +1,4 @@
-package ai.andromeda.mlstarter.ui.static
+package ai.andromeda.mlstarter.ui.classification
 
 import ai.andromeda.mlstarter.R
 import ai.andromeda.mlstarter.ui.common.components.GradientButton

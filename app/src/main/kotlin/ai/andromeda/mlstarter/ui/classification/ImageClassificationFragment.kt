@@ -1,4 +1,4 @@
-package ai.andromeda.mlstarter.ui.static
+package ai.andromeda.mlstarter.ui.classification
 
 import ai.andromeda.mlstarter.ml.ImageClassifier
 import ai.andromeda.mlstarter.ui.theme.MLStarterTheme
@@ -14,7 +14,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.core.graphics.decodeBitmap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
