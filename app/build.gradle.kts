@@ -22,12 +22,28 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("debug") {
+            buildConfigField(
+                type = "String",
+                name = "BASE_URL",
+                value = "\"http:://raspberrypi.local/\""
+            )
+            versionNameSuffix = "-debug"
+        }
+
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            getByName("debug") {
+                buildConfigField(
+                    type = "String",
+                    name = "BASE_URL",
+                    value = "\"http:://raspberrypi.local/\""
+                )
+            }
         }
     }
     compileOptions {
@@ -90,6 +106,12 @@ dependencies {
     implementation(Dependencies.tensorflowMetadata)
     implementation(Dependencies.tensorflowGpu)
 
+    // ... Retrofit & OkHttp
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.gsonConverter)
+    implementation(Dependencies.okHttp)
+    implementation(Dependencies.loggingInterceptor)
+
     // ... Glide Compose
     implementation(Dependencies.glideCompose)
 
@@ -97,8 +119,8 @@ dependencies {
     implementation(Dependencies.logger)
 }
 
-// Required for Hilt
-// Ref: https://developer.android.com/training/dependency-injection/hilt-android#kts)
+// ... Required for Hilt
+// ... Ref: (https://dagger.dev/hilt/gradle-setup.html)
 kapt {
     correctErrorTypes = true
 }
