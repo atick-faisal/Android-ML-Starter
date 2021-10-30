@@ -8,7 +8,7 @@ interface ObjectDetectionApi {
 
     @FormUrlEncoded
     @POST("/yolo/v5/")
-    fun alalizeImage(
+    suspend fun analyzeImage(
         @Field("image") image: String
     ): String
 
