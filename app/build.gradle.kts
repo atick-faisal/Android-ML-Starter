@@ -109,6 +109,7 @@ dependencies {
     // ... Retrofit & OkHttp
     implementation(Dependencies.retrofit)
     implementation(Dependencies.gsonConverter)
+    implementation(Dependencies.scalarConverter)
     implementation(Dependencies.okHttp)
     implementation(Dependencies.loggingInterceptor)
 

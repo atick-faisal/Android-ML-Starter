@@ -44,6 +44,7 @@ object Dependencies {
     // ... OkHttp (https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor)
     val retrofit by lazy { "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}" }
     val gsonConverter by lazy { "com.squareup.retrofit2:converter-gson:${Versions.RETROFIT}" }
+    val scalarConverter by lazy { "com.squareup.retrofit2:converter-scalars:${Versions.RETROFIT}" }
     val okHttp by lazy { "com.squareup.okhttp3:okhttp:${Versions.RETROFIT}" }
     val loggingInterceptor by lazy { "com.squareup.okhttp3:logging-interceptor:${ Versions.OKHTTP }" }
 
