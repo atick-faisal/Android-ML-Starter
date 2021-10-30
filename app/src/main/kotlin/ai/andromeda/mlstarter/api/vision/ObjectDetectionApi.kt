@@ -10,6 +10,6 @@ interface ObjectDetectionApi {
     @POST("/yolo/v5/")
     suspend fun analyzeImage(
         @Field("image") image: String
-    ): String
+    ): String?
 
 }
