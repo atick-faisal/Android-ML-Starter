@@ -16,6 +16,8 @@ object InterceptorModule {
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor { message ->
             com.orhanobut.logger.Logger.i(message)
+        }.apply {
+            level = HttpLoggingInterceptor.Level.BASIC
         }
     }
 
