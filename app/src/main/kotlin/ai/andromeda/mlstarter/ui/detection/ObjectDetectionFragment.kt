@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalAnimationApi
@@ -38,7 +39,7 @@ class ObjectDetectionFragment : Fragment() {
             )
         }
         viewModel.setImageUri(uri)
-        viewModel.alalyzeImageOnline(bitmap)
+        viewModel.analyzeImageOnline(bitmap)
     }
 
     override fun onCreateView(
@@ -46,7 +47,7 @@ class ObjectDetectionFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return ComposeView(requireContext()).apply {
+        val composeView = ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 MLStarterTheme {
@@ -56,5 +57,11 @@ class ObjectDetectionFragment : Fragment() {
                 }
             }
         }
+        viewModel.serverStatus.observe(viewLifecycleOwner, {
+            Logger.i("Server online ...")
+        })
+        viewModel.checkServer()
+
+        return composeView
     }
 }

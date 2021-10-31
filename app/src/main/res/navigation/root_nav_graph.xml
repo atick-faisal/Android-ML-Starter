@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_selectorFragment_to_imageClassifiactionFragment"
             app:destination="@id/imageClassifiactionFragment" />
+        <action
+            android:id="@+id/action_selectorFragment_to_objectDetectionFragment"
+            app:destination="@id/objectDetectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/livePredictionFragment"
@@ -23,4 +26,8 @@
         android:id="@+id/imageClassifiactionFragment"
         android:name="ai.andromeda.mlstarter.ui.classification.ImageClassificationFragment"
         android:label="ImageClassifiactionFragment" />
+    <fragment
+        android:id="@+id/objectDetectionFragment"
+        android:name="ai.andromeda.mlstarter.ui.detection.ObjectDetectionFragment"
+        android:label="ObjectDetectionFragment" />
 </navigation>

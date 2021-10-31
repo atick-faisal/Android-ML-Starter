@@ -3,6 +3,7 @@ package ai.andromeda.mlstarter.ui.detection
 import ai.andromeda.mlstarter.R
 import ai.andromeda.mlstarter.ui.common.components.GradientButton
 import ai.andromeda.mlstarter.ui.theme.MaterialColors
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -15,6 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,10 +29,12 @@ import com.skydoves.landscapist.glide.GlideImage
 @Composable
 fun ObjectDetectionScreen(
     onSelectImageClick: () -> Unit,
-    imageClassificationViewModel: ObjectDetectionViewModel = viewModel()
+    objectDetectionViewModel: ObjectDetectionViewModel = viewModel()
 ) {
 
-    val imageUri = imageClassificationViewModel.imageUri.observeAsState()
+    val hidePredictions = objectDetectionViewModel.hidePredictions.observeAsState()
+    val imageUri = objectDetectionViewModel.imageUri.observeAsState()
+    val predictedImage = objectDetectionViewModel.predictedImage.observeAsState()
 
     Box(
         modifier = Modifier
@@ -37,87 +42,73 @@ fun ObjectDetectionScreen(
             .padding(24.dp)
     ) {
 
-        if (imageUri.value != null) {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+        when {
+            imageUri.value != null && hidePredictions.value == true -> {
                 GlideImage(
                     imageModel = imageUri.value,
                     circularReveal = CircularReveal(250),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(16.dp))
+                        .clip(RoundedCornerShape(16.dp)),
+                    contentScale = ContentScale.FillWidth
                 )
-
-//                Spacer(modifier = Modifier.height(16.dp))
-
-//                AnimatedVisibility(
-//                    visible = predictions.value != null
-//                ) {
-//                    predictions.value?.let { predictions ->
-//                        Card(
-//                            modifier = Modifier
-//                                .fillMaxWidth(),
-//                            elevation = 4.dp,
-//                            shape = RoundedCornerShape(16.dp),
-//                            backgroundColor = MaterialColors.Purple50
-//                        ) {
-//                            LazyColumn(
-//                                modifier = Modifier
-//                                    .fillMaxWidth()
-//                                    .padding(24.dp)
-//                            ) {
-//                                items(predictions) { prediction ->
-//                                    Text(
-//                                        text = prediction.toString(), color = Color.DarkGray,
-//                                        fontSize = 16.sp
-//                                    )
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-
-//                Spacer(modifier = Modifier.height(16.dp))
-//
-//                AnimatedVisibility(
-//                    visible = predictions.value != null
-//                ) {
-//                    predictions.value?.let { predictions ->
-//                        if (predictions.isNotEmpty())
-//                            Text(
-//                                text = "Prediction: ${predictions[0].label}",
-//                                fontSize = 20.sp,
-//                                color = Color.DarkGray
-//                            )
-//                    }
-//                }
             }
-        } else {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Image(
-                    modifier = Modifier.fillMaxWidth(),
-                    painter = painterResource(id = R.drawable.vector_empty),
-                    contentDescription = ""
-                )
-                Text(text = "No Image Found", fontSize = 18.sp, color = Color.LightGray)
+            predictedImage.value != null && hidePredictions.value == false -> {
+                predictedImage.value?.let { bitmap ->
+                    Image(
+                        bitmap = bitmap.asImageBitmap(),
+                        contentDescription = "",
+                        contentScale = ContentScale.FillWidth,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(16.dp))
+                    )
+                }
+            }
+            else -> {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Image(
+                        modifier = Modifier.fillMaxWidth(),
+                        painter = painterResource(id = R.drawable.vector_empty),
+                        contentDescription = ""
+                    )
+                    Text(text = "No Image Found", fontSize = 18.sp, color = Color.LightGray)
+                }
             }
         }
 
-        GradientButton(text = "Load Image from Gallery",
-            gradient = Brush.verticalGradient(
-                listOf(
-                    MaterialColors.Purple500,
-                    MaterialColors.Purple900
+        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
+            AnimatedVisibility(visible = predictedImage.value != null) {
+                GradientButton(text = "Toggle Predictions",
+                    gradient = Brush.verticalGradient(
+                        listOf(
+                            MaterialColors.Orange500,
+                            MaterialColors.Orange900
+                        )
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(56.dp)
+                        .clip(RoundedCornerShape(28.dp)),
+                    onClick = { objectDetectionViewModel.togglePrediction() }
                 )
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp)
-                .align(Alignment.BottomCenter)
-                .clip(RoundedCornerShape(28.dp)),
-            onClick = { onSelectImageClick() }
-        )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            GradientButton(text = "Load Image from Gallery",
+                gradient = Brush.verticalGradient(
+                    listOf(
+                        MaterialColors.Purple500,
+                        MaterialColors.Purple900
+                    )
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp)
+                    .clip(RoundedCornerShape(28.dp)),
+                onClick = { onSelectImageClick() }
+            )
+        }
     }
 }
