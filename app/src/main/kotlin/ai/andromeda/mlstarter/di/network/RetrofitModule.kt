@@ -1,5 +1,6 @@
 package ai.andromeda.mlstarter.di.network
 
+import ai.andromeda.mlstarter.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,7 +27,7 @@ object RetrofitModule {
         okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(converterFactory)
             .client(okHttpClient)
             .build()
