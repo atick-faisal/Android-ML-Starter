@@ -23,5 +23,8 @@ object MaterialColors {
     val Green500 = Color(0xFF4CAF50)
     val Green900 = Color(0xFF1B5E20)
 
+    // ... Teal
     val Teal200 = Color(0xFF03DAC5)
+    val Teal500 = Color(0xFF009688)
+    val Teal900 = Color(0xFF004D40)
 }
