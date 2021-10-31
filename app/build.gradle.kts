@@ -26,7 +26,8 @@ android {
             buildConfigField(
                 type = "String",
                 name = "BASE_URL",
-                value = "\"http:://raspberrypi.local/\""
+                value = "\"http://192.168.107.119:5000\""
+                // value = "\"http://192.168.0.110:5000\""
             )
             versionNameSuffix = "-debug"
         }
@@ -41,7 +42,8 @@ android {
                 buildConfigField(
                     type = "String",
                     name = "BASE_URL",
-                    value = "\"http:://raspberrypi.local/\""
+                    value = "\"http://192.168.107.119:5000\""
+                    // value = "\"http://192.168.0.110:5000\""
                 )
             }
         }
