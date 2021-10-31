@@ -26,7 +26,8 @@ class SelectorFragment : Fragment() {
                 MLStarterTheme {
                     SelectorScreen(
                         onLivePredictionClick = ::navigateToLivePredictionFragment,
-                        onImageClassificationClick = ::navigateToImageClassificationFragment
+                        onImageClassificationClick = ::navigateToImageClassificationFragment,
+                        onObjectDetectionClick = ::navigateToObjectDetectionFragment
                     )
                 }
             }
@@ -42,6 +43,12 @@ class SelectorFragment : Fragment() {
     private fun navigateToImageClassificationFragment() {
         findNavController().navigate(
             SelectorFragmentDirections.actionSelectorFragmentToImageClassifiactionFragment()
+        )
+    }
+
+    private fun navigateToObjectDetectionFragment() {
+        findNavController().navigate(
+            SelectorFragmentDirections.actionSelectorFragmentToObjectDetectionFragment()
         )
     }
 }

@@ -18,7 +18,8 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun SelectorScreen(
     onLivePredictionClick: () -> Unit,
-    onImageClassificationClick: () -> Unit
+    onImageClassificationClick: () -> Unit,
+    onObjectDetectionClick: () -> Unit
 ) {
 
     Column(
@@ -38,7 +39,7 @@ fun SelectorScreen(
 
         SelectionCard(
             icon = R.drawable.live,
-            title = "Live Prediction",
+            title = "Live Prediction\non Device",
             color = Brush.horizontalGradient(
                 listOf(MaterialColors.Orange500, MaterialColors.Orange900)
             ),
@@ -49,11 +50,33 @@ fun SelectorScreen(
 
         SelectionCard(
             icon = R.drawable.gallery,
-            title = "Image Classification",
+            title = "Image Classification\non Device",
             color = Brush.horizontalGradient(
                 listOf(MaterialColors.Purple500, MaterialColors.Purple900)
             ),
             onClick = { onImageClassificationClick() }
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SelectionCard(
+            icon = R.drawable.online_classification,
+            title = "Image Classification\non Server",
+            color = Brush.horizontalGradient(
+                listOf(MaterialColors.Teal500, MaterialColors.Teal900)
+            ),
+            onClick = { onImageClassificationClick() }
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SelectionCard(
+            icon = R.drawable.object_detection,
+            title = "Object Detection\non Server",
+            color = Brush.horizontalGradient(
+                listOf(MaterialColors.Green500, MaterialColors.Green900)
+            ),
+            onClick = { onObjectDetectionClick() }
         )
     }
 }
